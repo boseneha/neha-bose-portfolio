@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha Bose - Senior UX Researcher, Trust, Safety and Security</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg: #F5F0E4;
+    --bg-deep: #EEE7D6;
+    --card: #FFFFFF;
+    --card-alt: #FBF8F1;
+    --ink: #2B2A27;
+    --ink-soft: #5C574C;
+    --ink-faint: #8C8778;
+    --line: #DFD5BF;
+    --blue: #64879C;
+    --blue-deep: #4C6D80;
+    --blue-tint: #E4EDF0;
+    --green: #7C9A82;
+    --green-deep: #5F7C66;
+    --green-tint: #E7EEE5;
+    --tier-low: #8FB996;
+    --tier-med: #E3C875;
+    --tier-high: #E0A26B;
+    --tier-crit: #CC8079;
+    --shadow: 0 1px 2px rgba(43,42,39,0.04), 0 8px 24px rgba(43,42,39,0.06);
+    --radius: 18px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 0.5em 0;
+    line-height: 1.15;
+  }
+  p{ margin: 0 0 1em 0; color: var(--ink-soft); }
+  a{ color: var(--blue-deep); }
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  section{ padding: 96px 0; }
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{
+    content:'';
+    width: 22px; height: 1px;
+    background: var(--blue-deep);
+    display: inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(245,240,228,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: 1080px; margin: 0 auto; padding: 0 32px;
+    height: 64px; display:flex; align-items:center; justify-content: space-between;
+  }
+  .nav-name{
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; color: var(--ink);
+    text-decoration:none;
+  }
+  .nav-links{ display:flex; align-items:center; gap: 6px; }
+  .nav-links a{
+    text-decoration:none; color: var(--ink-soft); font-size: 14.5px; font-weight: 500;
+    padding: 8px 16px; border-radius: 999px; transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover{ background: var(--blue-tint); color: var(--blue-deep); }
+  .nav-dot{ color: var(--ink-faint); font-size: 13px; }
+  .tab-btn{
+    text-decoration:none; color: var(--ink-soft); font-size: 14.5px; font-weight: 500;
+    padding: 8px 16px; border-radius: 999px; transition: background 0.2s, color 0.2s;
+    background: none; border: none; font-family: 'Inter', sans-serif; cursor: pointer;
+  }
+  .tab-btn:hover{ background: var(--blue-tint); color: var(--blue-deep); }
+  .tab-btn.active{ background: var(--ink); color: var(--bg); }
+  .tab-btn.active:hover{ background: var(--ink); color: var(--bg); }
+
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  /* ---------- LANDING INTRO (always visible) ---------- */
+  .landing-tabs{
+    position: sticky; top: 64px; z-index: 40; background: var(--bg);
+    border-bottom: 1px solid var(--line); padding: 18px 0;
+  }
+  .landing-tabs .wrap{ display:flex; align-items:center; gap: 10px; }
+  .landing-tabs .eyebrow-lite{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-faint); margin-right: 8px;
+  }
+  .big-tab-btn{
+    font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+    padding: 10px 22px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink-soft); cursor: pointer; transition: all 0.2s;
+  }
+  .big-tab-btn:hover{ border-color: var(--blue-deep); color: var(--blue-deep); }
+  .big-tab-btn.active{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* ---------- HERO ---------- */
+  #landing{ padding: 0; }
+  .hero{
+    padding: 52px 0 36px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero-simple{
+    max-width: 680px; margin: 0 auto;
+  }
+  .hero-simple .eyebrow{ justify-content: center; }
+  .hero-simple .eyebrow::before{ display:none; }
+  .hero h1{ font-size: 46px; letter-spacing: -0.01em; }
+  .hero .role{
+    font-size: 18px; color: var(--blue-deep); font-weight: 500; margin-bottom: 22px;
+    font-family: 'Fraunces', serif; font-style: italic;
+  }
+  .hero .positioning{
+    font-size: 18px; color: var(--ink-soft); margin: 0 auto;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 13px 24px; border-radius: 999px; text-decoration:none;
+    font-weight: 600; font-size: 14.5px; transition: transform 0.15s, box-shadow 0.15s;
+    border: 1px solid transparent; cursor:pointer;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background: var(--ink); color: var(--bg); }
+  .btn-primary:hover{ box-shadow: var(--shadow); }
+  .btn-outline{ background: transparent; color: var(--ink); border-color: var(--ink-faint); }
+  .btn-outline:hover{ border-color: var(--ink); }
+  .btn-ghost{ background: var(--card); color: var(--blue-deep); border-color: var(--line); }
+
+  /* ---------- HOW I WORK ---------- */
+  .howiwork{ background: var(--card-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 40px 0 52px 0; }
+  .step-strip{
+    display:grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; margin-top: 30px;
+  }
+  .step-strip::before{
+    content:''; position:absolute; top: 27px; left: 9%; right: 9%; height: 1px;
+    background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px);
+  }
+  .step{ text-align:center; padding: 0 10px; position:relative; }
+  .step-num{
+    width: 54px; height: 54px; border-radius: 50%; background: var(--card);
+    border: 1.5px solid var(--blue-deep); color: var(--blue-deep);
+    display:flex; align-items:center; justify-content:center; margin: 0 auto 18px auto;
+    font-family:'Fraunces', serif; font-weight: 600; font-size: 18px; position: relative; z-index: 2;
+  }
+  .step h4{ font-size: 15.5px; margin-bottom: 6px; }
+  .step p{ font-size: 13.5px; color: var(--ink-faint); margin: 0; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:start; margin-top: 32px;
+  }
+  .strengths{ list-style:none; padding:0; margin: 24px 0 0 0; display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .strengths li{
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px 16px; font-size: 14px; color: var(--ink-soft);
+    display:flex; align-items:flex-start; gap: 12px; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .strengths li:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
+  .strengths li:last-child{ grid-column: 1 / -1; }
+  .strengths b{ color: var(--ink); }
+  .strength-icon{
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .timeline{ list-style:none; margin: 24px 0 0 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); }
+  .timeline li{ position: relative; padding-bottom: 30px; }
+  .timeline li:last-child{ padding-bottom: 0; }
+  .timeline li::before{
+    content:''; position:absolute; left: -27px; top: 4px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--green); border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--green);
+  }
+  .timeline .yr{ font-family:'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--green-deep); font-weight: 500; }
+  .timeline h4{ font-size: 16px; margin: 4px 0 4px 0; }
+  .timeline p{ font-size: 14px; margin: 0; }
+
+  .personal-note{
+    background: linear-gradient(135deg, var(--blue-tint) 0%, var(--green-tint) 100%);
+    border: 1px dashed var(--blue-deep);
+    border-radius: 22px;
+    padding: 26px 28px; margin-top: 28px; font-size: 14.5px;
+    text-align: center; max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .personal-note-icon{ font-size: 26px; margin-bottom: 6px; letter-spacing: 4px; }
+  .personal-note-title{
+    display:block; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px;
+    color: var(--ink); margin-bottom: 8px; font-weight: 600;
+  }
+  .personal-note p{ color: var(--ink-soft); }
+  .pubs{ margin-top: 28px; }
+  .pubs li{ margin-bottom: 10px; font-size: 14.5px; color: var(--ink-soft); }
+
+  /* ---------- CASE STUDIES ---------- */
+  .cs-cards{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px;
+  }
+  .cs-card{
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 24px; cursor: pointer; text-align:left; transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    display:flex; flex-direction: column; gap: 14px; font-family: 'Inter', sans-serif;
+  }
+  .cs-card:hover{ box-shadow: var(--shadow); transform: translateY(-2px); }
+  .cs-card.active{ border-color: var(--blue-deep); box-shadow: var(--shadow); }
+  .cs-tag{
+    width: 40px; height: 40px; border-radius: 11px; display:flex; align-items:center; justify-content:center;
+  }
+  .cs-card h3{ font-size: 18px; margin-bottom: 4px; }
+  .cs-card .method{ font-size: 12.5px; color: var(--ink-faint); font-family:'IBM Plex Mono', monospace; }
+  .cs-card .teaser{ font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  .cs-detail{
+    margin-top: 28px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 44px; display:none;
+  }
+  .cs-detail.visible{ display:block; }
+  .cs-detail .cs-head{ display:flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 8px; }
+  .cs-detail .cs-method-line{ font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--blue-deep); margin-bottom: 24px; }
+  .cs-detail h3{ font-size: 27px; }
+  .cs-section{ margin-bottom: 30px; }
+  .cs-section h4{
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.1em;
+    font-family:'IBM Plex Mono', monospace; color: var(--ink-faint); font-weight: 500; margin-bottom: 10px;
+  }
+  .cs-section p{ font-size: 15.5px; color: var(--ink); margin-bottom: 10px; }
+  .cs-section p:last-child{ margin-bottom: 0; }
+  .cs-section ul{ margin: 0; padding-left: 20px; }
+  .cs-section li{ font-size: 15.5px; color: var(--ink); margin-bottom: 8px; }
+
+  .fig{
+    margin: 22px 0; background: var(--card-alt); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 22px 16px 22px;
+  }
+  .fig svg{ width: 100%; height: auto; display:block; }
+  .fig-caption{
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-faint);
+    margin-top: 12px; text-align: center; letter-spacing: 0.01em;
+  }
+  .fig-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .close-cs{
+    background: var(--card-alt); border: 1px solid var(--line); color: var(--ink-soft);
+    border-radius: 999px; width: 34px; height: 34px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; flex-shrink: 0;
+  }
+  .close-cs:hover{ background: var(--line); }
+
+  /* ---------- CONFIDENTIALITY ---------- */
+  .confidentiality{
+    margin-top: 40px; padding: 18px 22px; background: var(--green-tint); border: 1px solid var(--line);
+    border-radius: 14px; font-size: 13.5px; color: var(--green-deep); display:flex; gap: 12px; align-items:flex-start;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--ink); color: var(--bg); padding: 56px 0 36px 0; margin-top: 40px;
+  }
+  footer .foot-inner{ display:flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  footer h3{ color: var(--bg); font-size: 24px; margin-bottom: 8px; }
+  footer p{ color: #C9C4B6; margin: 0; }
+  footer .foot-links{ display:flex; gap: 22px; }
+  footer .foot-links a{ color: var(--bg); text-decoration: none; font-size: 14.5px; border-bottom: 1px solid rgba(245,240,228,0.35); padding-bottom: 2px; }
+  footer .foot-links a:hover{ border-color: var(--bg); }
+  .foot-bottom{ margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(245,240,228,0.16); font-size: 12.5px; color: #948F80; }
+
+  @media (max-width: 900px){
+    .about-grid{ grid-template-columns: 1fr; }
+    .strengths{ grid-template-columns: 1fr; }
+    .strengths li:last-child{ grid-column: auto; }
+    .cs-cards{ grid-template-columns: 1fr; }
+    .step-strip{ grid-template-columns: 1fr; gap: 28px; }
+    .step-strip::before{ display:none; }
+    .fig-grid{ grid-template-columns: 1fr; }
+    .cs-detail{ padding: 28px 20px; }
+    .hero h1{ font-size: 34px; }
+  }
+
+  :focus-visible{ outline: 2px solid var(--blue-deep); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <button class="nav-name" onclick="showTab('landing')" style="background:none;border:none;cursor:pointer;">Neha Bose</button>
+    <nav class="nav-links" id="tab-nav">
+      <button class="tab-btn" data-tab="about" onclick="showTab('about')">More About Me</button>
+      <span class="nav-dot">.</span>
+      <button class="tab-btn" data-tab="case-studies" onclick="showTab('case-studies')">Select Case Studies</button>
+      <span class="nav-dot">.</span>
+      <button class="tab-btn" data-tab="contact" onclick="showTab('contact')">Get in Touch</button>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- ============ LANDING (hero + how I work) ============ -->
+<section id="landing" class="tab-panel active">
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-simple">
+        <div class="eyebrow">Trust, Safety and Security</div>
+        <h1>Neha Bose</h1>
+        <div class="role">Senior UX Researcher</div>
+        <p class="positioning">Senior UX Researcher in trust, safety and security. I turn ambiguous, high-stakes problems into decisions, choosing the right mix of qualitative and quantitative methods and driving the change my research points to.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HOW I WORK ============ -->
+  <div class="howiwork">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">How I work</div>
+      <h2 style="font-size:22px; text-align:center;">From ambiguous question to shipped decision</h2>
+      <div class="step-strip">
+        <div class="step"><div class="step-num">1</div><h4>Frame the problem</h4><p>Turn a vague concern into a sharp, answerable question.</p></div>
+        <div class="step"><div class="step-num">2</div><h4>Choose the methods</h4><p>Qualitative, quantitative or computational, matched to what the question needs.</p></div>
+        <div class="step"><div class="step-num">3</div><h4>Execute</h4><p>Run the study with rigour, from design through fieldwork.</p></div>
+        <div class="step"><div class="step-num">4</div><h4>Synthesise</h4><p>Turn raw signal into a clear, decision-ready story.</p></div>
+        <div class="step"><div class="step-num">5</div><h4>Drive the decision</h4><p>Carry the finding into the roadmap and see it through.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="tab-panel">
+  <div class="wrap">
+    <div class="eyebrow">About</div>
+    <h2 style="font-size:32px;">Behavioural science meets actual adversaries</h2>
+    <div class="about-grid">
+      <div>
+        <p style="font-size:16.5px; color:var(--ink);">I am a mixed-methods UX researcher with a PhD in behavioural economics and the better part of a decade spent trying to understand why people do what they do, in markets, in products, and in the messier corners of the internet. I bring a mix of behavioural-science depth, hands-on curiosity about AI products, and experience researching complex systems at scale. I care about identifying the questions that actually matter, testing early concepts, partnering closely with product, engineering and design, and helping shape experiences that are genuinely useful, understandable and human-centred.</p>
+
+        <ul class="strengths">
+          <li>
+            <span class="strength-icon" style="background:var(--blue-tint);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="12" r="6.5" stroke="var(--blue-deep)" stroke-width="1.6"/><circle cx="15" cy="12" r="6.5" stroke="var(--green-deep)" stroke-width="1.6"/></svg>
+            </span>
+            <span><b>Mixed-methods range.</b> Qualitative, quantitative and computational, matched to the problem.</span>
+          </li>
+          <li>
+            <span class="strength-icon" style="background:var(--green-tint);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="var(--green-deep)" stroke-width="1.6"/><circle cx="12" cy="12" r="3.5" stroke="var(--green-deep)" stroke-width="1.6"/><circle cx="12" cy="12" r="1" fill="var(--green-deep)"/></svg>
+            </span>
+            <span><b>Strategic framing.</b> Turning vague, high-stakes questions into researchable ones.</span>
+          </li>
+          <li>
+            <span class="strength-icon" style="background:#EFE6DA;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19 V5 M4 19 H20" stroke="#8A6F4E" stroke-width="1.6" stroke-linecap="round"/><rect x="7" y="12" width="3" height="7" fill="#8A6F4E"/><rect x="12" y="8" width="3" height="11" fill="#8A6F4E"/><rect x="17" y="4" width="3" height="15" fill="#8A6F4E"/></svg>
+            </span>
+            <span><b>Synthesis and data storytelling.</b> Making complex findings clear and decision-ready.</span>
+          </li>
+          <li>
+            <span class="strength-icon" style="background:#F1E2E0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 20 V6 M12 6 L6 12 M12 6 L18 12" stroke="var(--tier-crit)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span><b>Impact orientation.</b> Research that changes products, strategy and detection.</span>
+          </li>
+          <li>
+            <span class="strength-icon" style="background:var(--blue-tint);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 7 V13 C20 17.5 16.5 20.5 12 21 C7.5 20.5 4 17.5 4 13 V7 Z" stroke="var(--blue-deep)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </span>
+            <span><b>Domain depth.</b> Account security, conversational AI, compromise, fraud, authentication, abuse ecosystems.</span>
+          </li>
+        </ul>
+
+        <div class="personal-note">
+          <div class="personal-note-icon">🔎📚</div>
+          <b class="personal-note-title">A bit about me</b>
+          <p style="margin:0;">Outside work, I am proudly obsessed with crime fiction, which is probably why I gravitated towards trust and safety. Nothing gives me greater joy than finding a new show to binge, and I am always up for a city walking tour.</p>
+        </div>
+
+        <div class="pubs">
+          <div class="eyebrow" style="margin-bottom:10px;">Selected publications and press</div>
+          <ul style="list-style:none; padding:0;">
+            <li class="pubs-item">"Personality beliefs and small talk", peer-reviewed research, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269523" target="_blank" rel="noopener">PLOS One</a>. Covered in <a href="https://www.theguardian.com/science/2022/sep/03/call-it-trivial-but-we-still-need-to-master-the-art-of-small-talk" target="_blank" rel="noopener">The Guardian</a> and <a href="https://www.euronews.com/culture/2022/09/05/why-making-more-of-an-effort-to-chit-chat-with-colleagues-can-reap-big-rewards" target="_blank" rel="noopener">Euronews</a>.</li>
+            <li class="pubs-item" style="margin-top:10px;">"Climate change and diet", behavioural RCT, <a href="https://www.iza.org/publications/dp/13426/climate-change-and-diet" target="_blank" rel="noopener">IZA discussion paper</a>, open code on <a href="https://github.com/boseneha/Climate-Change-and-Diet" target="_blank" rel="noopener">GitHub</a>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <ul class="timeline">
+          <li>
+            <div class="yr">2024 - present</div>
+            <h4>Senior UX Researcher, Integrity and Security - Meta</h4>
+            <p>Account security, compromise, fraud and online abuse, where behavioural science meets actual adversaries.</p>
+          </li>
+          <li>
+            <div class="yr">2021 - 2024</div>
+            <h4>Senior User Insights Adviser - UK Competition and Markets Authority</h4>
+            <p>Large-scale research shaping regulation on digital markets, from Google's Privacy Sandbox to the Mobile Ecosystems study, decisions that touched millions of UK consumers.</p>
+          </li>
+          <li>
+            <div class="yr">2020 - 2021</div>
+            <h4>Teaching Behavioural Economics - UCL</h4>
+            <p>Found that I love making complex ideas click for other people.</p>
+          </li>
+          <li>
+            <div class="yr">2017 - 2021</div>
+            <h4>PhD, Economics (Behavioural) - University of Warwick</h4>
+            <p>Four years running experiments on how people communicate and make decisions. The work found its way into The Guardian and Euronews.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section id="case-studies" class="tab-panel" style="background:var(--bg-deep); border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">Selected case studies</div>
+    <h2 style="font-size:32px;">Three ways in, one question underneath</h2>
+    <p style="max-width:60ch; font-size:16px;">Where does trust break, and how would you know early enough to act. Each study below took a different method because the question demanded it.</p>
+
+    <div class="cs-cards" id="cs-cards">
+      <button class="cs-card" data-cs="1" onclick="openCS(1)">
+        <div class="cs-tag" style="background:var(--blue-tint);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 7 V13 C20 17.5 16.5 20.5 12 21 C7.5 20.5 4 17.5 4 13 V7 Z" stroke="var(--blue-deep)" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12 L11 14 L15.5 9" stroke="var(--blue-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="method">Computational mixed-methods . Meta</div>
+        <h3>Catching account-recovery fraud in the conversation itself</h3>
+        <p class="teaser">Is there a signal in the conversation that separates a locked-out user from an attacker, early enough to act on.</p>
+      </button>
+
+      <button class="cs-card" data-cs="2" onclick="openCS(2)">
+        <div class="cs-tag" style="background:var(--green-tint);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19 V5 M4 19 H20" stroke="var(--green-deep)" stroke-width="1.6" stroke-linecap="round"/><path d="M7 15 L11 10 L14 13 L19 6" stroke="var(--green-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="method">Large-scale survey . quantitative . Meta</div>
+        <h3>Where account recovery quietly fails, even when it succeeds</h3>
+        <p class="teaser">Studying successful recoveries across six flows to find where success is fragile, not just where it fails outright.</p>
+      </button>
+
+      <button class="cs-card" data-cs="3" onclick="openCS(3)">
+        <div class="cs-tag" style="background:#EFE6DA;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="2.6" stroke="#8A6F4E" stroke-width="1.6"/><circle cx="17" cy="7" r="2.2" stroke="#8A6F4E" stroke-width="1.6"/><circle cx="16" cy="16" r="2.6" stroke="#8A6F4E" stroke-width="1.6"/><circle cx="7" cy="17" r="2" stroke="#8A6F4E" stroke-width="1.6"/><path d="M10 9.5 L14.5 8 M14.5 15 L10.5 10.5 M14 15.5 L8.5 16" stroke="#8A6F4E" stroke-width="1.3"/></svg>
+        </div>
+        <div class="method">Qualitative . interviews and thematic analysis . Meta</div>
+        <h3>How businesses lose control of their accounts</h3>
+        <p class="teaser">Understanding the mental models and everyday habits that quietly open the door to account takeover.</p>
+      </button>
+    </div>
+
+    <!-- ===== CASE STUDY 1 DETAIL ===== -->
+    <div class="cs-detail" id="cs-detail-1">
+      <div class="cs-head">
+        <div>
+          <h3>Catching account-recovery fraud in the conversation itself</h3>
+          <div class="cs-method-line">Mixed-methods / computational qualitative research . Meta, Trust and Safety</div>
+        </div>
+        <button class="close-cs" onclick="closeCS()" aria-label="Close case study">&times;</button>
+      </div>
+
+      <div class="cs-section">
+        <h4>Problem and framing</h4>
+        <p>When someone is locked out of their account, they can reach a human agent to recover it. Attackers exploit that same path, socially engineering their way into accounts they do not own. The existing defence was retrospective, reviewers read transcripts after the fact, once the account had already changed hands, and could only ever sample a fraction. I set out to answer a sharper question: is there a signal in the conversation itself that separates a genuinely locked-out user from an attacker, early enough to act on.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Approach and methods</h4>
+        <p>This needed a qualitative-to-quantitative loop, not one or the other. The discriminating behaviour was unknown and human, a qualitative discovery problem, but to be trustworthy and scalable it had to be validated statistically and shipped as code. So I designed a four-stage pipeline: LLM-assisted signal discovery, semantic de-duplication, expert consolidation into precise testable definitions, and quantitative validation.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Process</h4>
+        <p>I used a large language model to read matched sets of confirmed-fraud and legitimate transcripts and surface candidate behavioural patterns, clustered hundreds of raw candidates down to a stable set, rewrote each as an explicit binary scoring rule, then scored the full corpus and tested every signal for statistical significance. Rigour sat at both ends: discovery grounded in human-labelled ground truth and structured to compare like with like, validation via significance testing and a held-out classifier, checking train-versus-test performance to confirm the model generalised rather than memorised.</p>
+        <div class="fig">
+          <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg">
+            <g font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--ink-soft)">
+              <text x="55" y="20" text-anchor="middle">Candidates</text>
+              <text x="230" y="20" text-anchor="middle">De-duplicated</text>
+              <text x="405" y="20" text-anchor="middle">Consolidated</text>
+              <text x="565" y="20" text-anchor="middle">Validated</text>
+            </g>
+            <path d="M15 45 L95 45 L80 165 L30 165 Z" fill="var(--blue-tint)" stroke="var(--blue-deep)" stroke-width="1.4"/>
+            <path d="M175 60 L285 60 L262 155 L198 155 Z" fill="var(--blue-tint)" stroke="var(--blue-deep)" stroke-width="1.4"/>
+            <path d="M350 75 L460 75 L442 145 L368 145 Z" fill="var(--blue-tint)" stroke="var(--blue-deep)" stroke-width="1.4"/>
+            <path d="M525 90 L610 90 L598 132 L537 132 Z" fill="var(--green)" stroke="var(--green-deep)" stroke-width="1.4"/>
+            <g stroke="var(--line)" stroke-width="1.5" stroke-dasharray="3 5">
+              <line x1="95" y1="90" x2="175" y2="95"/>
+              <line x1="285" y1="100" x2="350" y2="105"/>
+              <line x1="460" y1="105" x2="525" y2="108"/>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="20" font-weight="600" fill="var(--ink)" text-anchor="middle">
+              <text x="55" y="110">240+</text>
+              <text x="230" y="115">70</text>
+              <text x="405" y="118">18</text>
+              <text x="565" y="118">6</text>
+            </g>
+            <text x="55" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">raw signals</text>
+            <text x="230" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">stable patterns</text>
+            <text x="405" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">scoring rules</text>
+            <text x="565" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">in production</text>
+          </svg>
+          <div class="fig-caption">Figure 1. The discovery pipeline narrowed many candidate signals to a validated few. Illustrative, synthetic data.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Insight</h4>
+        <p>Fraudulent and legitimate recovery conversations do diverge in consistent, measurable ways, and those behavioural patterns held up on unseen data, enough for a model an engineering team would trust in production. The specific signals and model internals are withheld here for security reasons.</p>
+        <div class="fig-grid">
+          <div class="fig">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+              <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-soft)">
+                <text x="4" y="20">Signal A</text>
+                <text x="4" y="55">Signal B</text>
+                <text x="4" y="90">Signal C</text>
+                <text x="4" y="125">Signal D</text>
+                <text x="4" y="160">Signal E</text>
+                <text x="4" y="195">Signal F</text>
+              </g>
+              <g fill="var(--blue-tint)">
+                <rect x="68" y="8" width="210" height="14" rx="4"/>
+                <rect x="68" y="43" width="210" height="14" rx="4"/>
+                <rect x="68" y="78" width="210" height="14" rx="4"/>
+                <rect x="68" y="113" width="210" height="14" rx="4"/>
+                <rect x="68" y="148" width="210" height="14" rx="4"/>
+                <rect x="68" y="183" width="210" height="14" rx="4"/>
+              </g>
+              <g fill="var(--blue-deep)">
+                <rect x="68" y="8" width="175" height="14" rx="4"/>
+                <rect x="68" y="43" width="150" height="14" rx="4"/>
+                <rect x="68" y="78" width="128" height="14" rx="4"/>
+                <rect x="68" y="113" width="104" height="14" rx="4"/>
+                <rect x="68" y="148" width="82" height="14" rx="4"/>
+                <rect x="68" y="183" width="55" height="14" rx="4"/>
+              </g>
+            </svg>
+            <div class="fig-caption">Figure 2. How sharply each behavioural signal separated the groups. Illustrative, synthetic data, signal names are placeholders.</div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+              <line x1="35" y1="185" x2="35" y2="15" stroke="var(--ink-faint)" stroke-width="1"/>
+              <line x1="35" y1="185" x2="270" y2="185" stroke="var(--ink-faint)" stroke-width="1"/>
+              <line x1="35" y1="185" x2="270" y2="15" stroke="var(--line)" stroke-width="1.3" stroke-dasharray="3 5"/>
+              <path d="M35 185 C 70 100, 110 45, 270 20" fill="none" stroke="var(--green-deep)" stroke-width="2.4"/>
+              <text x="150" y="205" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">false positive rate</text>
+              <text x="14" y="100" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)" transform="rotate(-90 14 100)">true positive rate</text>
+            </svg>
+            <div class="fig-caption">Figure 3. Model performance, ROC curve. Illustrative, synthetic data.</div>
+          </div>
+        </div>
+        <div class="fig">
+          <svg viewBox="0 0 640 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="20" width="145" height="34" rx="8" fill="var(--tier-low)"/>
+            <rect x="165" y="20" width="145" height="34" rx="8" fill="var(--tier-med)"/>
+            <rect x="320" y="20" width="145" height="34" rx="8" fill="var(--tier-high)"/>
+            <rect x="475" y="20" width="155" height="34" rx="8" fill="var(--tier-crit)"/>
+            <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#3A342B" font-weight="500" text-anchor="middle">
+              <text x="82" y="42">Low</text>
+              <text x="237" y="42">Medium</text>
+              <text x="392" y="42">High</text>
+              <text x="552" y="42">Critical</text>
+            </g>
+            <text x="10" y="75" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">Operations chooses the action at each tier, monitor through to immediate intervention.</text>
+          </svg>
+          <div class="fig-caption">Figure 4. A tiered risk output lets operations choose the trade-off. Illustrative, synthetic data.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Impact, what moved</h4>
+        <p>Detection shifted from retrospective, manual and low-coverage to automated behavioural scoring running in production across every conversation. It became a staffed item on the team's roadmap, and it opened the path the team is now pursuing, moving from catching fraud after the account is handed over to intervening during the conversation, before it is.</p>
+      </div>
+    </div>
+
+    <!-- ===== CASE STUDY 2 DETAIL ===== -->
+    <div class="cs-detail" id="cs-detail-2">
+      <div class="cs-head">
+        <div>
+          <h3>Where account recovery quietly fails, even when it succeeds</h3>
+          <div class="cs-method-line">Large-scale on-platform survey . quantitative . Meta, Account Access</div>
+        </div>
+        <button class="close-cs" onclick="closeCS()" aria-label="Close case study">&times;</button>
+      </div>
+
+      <div class="cs-section">
+        <h4>Problem and framing</h4>
+        <p>Regaining access to a locked account runs through a fragmented set of recovery flows, often owned by different teams, and users hit a complex mix of them. Most prior research looked at a single flow, or at outright failures. I reframed the question: instead of studying failures, study successful recoveries across many flows to find where success is fragile, because pain points that merely slow down people who do recover are the same ones that make others abandon entirely.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Approach and methods</h4>
+        <p>A single-flow study cannot capture experience that varies by entry point, eligibility, device and situation. So I ran a cross-flow on-platform survey of users who had recently and successfully recovered across six high-volume recovery methods, a comparative design that surfaces which flows are fragile relative to the others. Successful recoverers are also an easier population to reach, and their friction is a leading indicator of others' failure.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Process</h4>
+        <p>I designed the screener and questionnaire to isolate genuine recent recoverers, route them by flow, and measure four things comparably across flows: recovery time, difficulties encountered, post-recovery protective actions, and perceived ease. Analysis was comparative, the point was the contrast between flows, not any one in isolation.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Insight: ease is not time</h4>
+        <p>The most difficult-rated flow was not the most time-consuming. Getting stuck, a verification code that will not work, an identity check with no response, makes a fast flow feel harder than a genuinely long one. Difficulty is driven by friction and uncertainty, not duration. That reframed where to invest: fix the stuck moments, not just the slow ones.</p>
+        <div class="fig">
+          <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+            <line x1="45" y1="220" x2="45" y2="20" stroke="var(--ink-faint)" stroke-width="1"/>
+            <line x1="45" y1="220" x2="460" y2="220" stroke="var(--ink-faint)" stroke-width="1"/>
+            <line x1="252" y1="20" x2="252" y2="220" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line x1="45" y1="120" x2="460" y2="120" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 5"/>
+            <circle cx="120" cy="185" r="9" fill="var(--green)"/>
+            <circle cx="360" cy="150" r="9" fill="var(--green)"/>
+            <circle cx="150" cy="60" r="11" fill="var(--tier-crit)"/>
+            <circle cx="410" cy="95" r="9" fill="var(--blue)"/>
+            <circle cx="220" cy="200" r="8" fill="var(--green)"/>
+            <circle cx="300" cy="70" r="9" fill="var(--tier-high)"/>
+            <text x="150" y="45" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink)">fast but stuck</text>
+            <text x="410" y="80" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink)">slow but smooth</text>
+            <text x="252" y="240" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)">perceived time</text>
+            <text x="18" y="120" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-faint)" transform="rotate(-90 18 120)">perceived difficulty</text>
+          </svg>
+          <div class="fig-caption">Figure 1. Perceived difficulty versus perceived time by recovery method. Illustrative, synthetic data, labels are generic method types.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Supporting findings</h4>
+        <p>Code-delivery and identity-verification steps drove the most reported friction, and protective actions after recovery were strikingly low, many users took none, leaving them exposed to repeat compromise.</p>
+        <div class="fig-grid">
+          <div class="fig">
+            <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg">
+              <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-soft)">
+                <text x="4" y="20">Code delivery</text>
+                <text x="4" y="60">Identity check</text>
+                <text x="4" y="100">Long wait</text>
+                <text x="4" y="140">Unclear steps</text>
+                <text x="4" y="180">Device switch</text>
+              </g>
+              <g fill="var(--blue-deep)">
+                <rect x="100" y="8" width="170" height="16" rx="4"/>
+                <rect x="100" y="48" width="140" height="16" rx="4"/>
+                <rect x="100" y="88" width="95" height="16" rx="4"/>
+                <rect x="100" y="128" width="75" height="16" rx="4"/>
+                <rect x="100" y="168" width="45" height="16" rx="4"/>
+              </g>
+            </svg>
+            <div class="fig-caption">Figure 2. Most-reported recovery pain points. Illustrative, synthetic data.</div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="105" cy="105" r="72" fill="none" stroke="var(--line)" stroke-width="24"/>
+              <circle cx="105" cy="105" r="72" fill="none" stroke="var(--tier-crit)" stroke-width="24" stroke-dasharray="226 452" transform="rotate(-90 105 105)"/>
+              <circle cx="105" cy="105" r="72" fill="none" stroke="var(--green)" stroke-width="24" stroke-dasharray="136 452" stroke-dashoffset="-226" transform="rotate(-90 105 105)"/>
+              <text x="105" y="102" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="19" font-weight="600" fill="var(--ink)">50%</text>
+              <text x="105" y="119" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-faint)">took no action</text>
+              <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-soft)">
+                <rect x="10" y="195" width="10" height="10" fill="var(--tier-crit)"/>
+                <text x="24" y="204">No protective action</text>
+                <rect x="140" y="195" width="10" height="10" fill="var(--green)"/>
+                <text x="154" y="204">Changed password</text>
+                <rect x="245" y="195" width="10" height="10" fill="var(--line)"/>
+                <text x="259" y="204">Reviewed sessions</text>
+              </g>
+            </svg>
+            <div class="fig-caption">Figure 3. Protective actions taken after recovery. Illustrative, synthetic data.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Impact, what moved</h4>
+        <ul>
+          <li>Recommendations adopted into the product backlog and team priorities, targeting the highest-friction verification steps and the stuck moments rather than raw time.</li>
+          <li>Reframed the team's mental model from how long does recovery take to where does recovery feel fragile, a more actionable lens for reducing preventable churn.</li>
+          <li>Proposed a logged proxy for recovery-experience quality, repeated challenge attempts and time-to-clear per step, so the team could track improvement over time, turning a one-off study into an ongoing measure.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== CASE STUDY 3 DETAIL ===== -->
+    <div class="cs-detail" id="cs-detail-3">
+      <div class="cs-head">
+        <div>
+          <h3>How businesses lose control of their accounts</h3>
+          <div class="cs-method-line">Qualitative research . in-depth interviews and thematic analysis . Meta, Trust and Safety</div>
+        </div>
+        <button class="close-cs" onclick="closeCS()" aria-label="Close case study">&times;</button>
+      </div>
+
+      <div class="cs-section">
+        <h4>Problem and framing</h4>
+        <p>Business-account takeover often begins not with a clever exploit but with weak everyday access management, too many admins, access never revoked, no clear view of who can do what. The team could see the risk in the abstract, but not the behaviour behind it. I set out to understand how businesses actually grant, share and lose track of account access, the mental models and habits that quietly open the door to compromise.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Approach and methods</h4>
+        <p>This is a why question about human behaviour and context, so it called for depth, not scale: in-depth interviews with the people who live it, business owners, agency staff and admins, across multiple markets to capture how practice varies. I analysed the transcripts through thematic analysis, coding what people said and clustering it via affinity mapping into a small set of themes that explained the risk.</p>
+      </div>
+
+      <div class="cs-section">
+        <h4>Process: thematic analysis</h4>
+        <p>I coded every transcript, then used affinity mapping to cluster hundreds of individual observations into coherent themes, moving from raw quotes to patterns to a structured account of how access management fails in practice.</p>
+        <div class="fig-grid">
+          <div class="fig">
+            <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <circle cx="55" cy="55" r="26" fill="var(--blue-tint)" stroke="var(--blue-deep)" stroke-width="1.3"/>
+                <circle cx="90" cy="40" r="6" fill="var(--blue-deep)"/><circle cx="70" cy="65" r="6" fill="var(--blue-deep)"/><circle cx="45" cy="35" r="6" fill="var(--blue-deep)"/>
+              </g>
+              <g>
+                <circle cx="220" cy="50" r="24" fill="var(--green-tint)" stroke="var(--green-deep)" stroke-width="1.3"/>
+                <circle cx="205" cy="35" r="6" fill="var(--green-deep)"/><circle cx="235" cy="60" r="6" fill="var(--green-deep)"/>
+              </g>
+              <g>
+                <circle cx="70" cy="165" r="28" fill="#EFE6DA" stroke="#8A6F4E" stroke-width="1.3"/>
+                <circle cx="55" cy="150" r="6" fill="#8A6F4E"/><circle cx="90" cy="175" r="6" fill="#8A6F4E"/><circle cx="60" cy="180" r="6" fill="#8A6F4E"/>
+              </g>
+              <g>
+                <circle cx="225" cy="170" r="24" fill="#F1E2E0" stroke="var(--tier-crit)" stroke-width="1.3"/>
+                <circle cx="210" cy="160" r="6" fill="var(--tier-crit)"/><circle cx="240" cy="180" r="6" fill="var(--tier-crit)"/>
+              </g>
+              <text x="55" y="100" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink-faint)">broad access</text>
+              <text x="220" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink-faint)">no revocation</text>
+              <text x="70" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink-faint)">agency access</text>
+              <text x="225" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink-faint)">reactive cleanup</text>
+            </svg>
+            <div class="fig-caption">Figure 1. Affinity mapping, clustering observations into themes. Illustrative, notes paraphrased for demonstration, not real quotes.</div>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg">
+              <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-soft)" text-anchor="middle">
+                <text x="55" y="18">Transcripts</text>
+                <text x="150" y="18">Codes</text>
+                <text x="245" y="18">Themes</text>
+              </g>
+              <rect x="20" y="35" width="70" height="150" rx="8" fill="var(--card)" stroke="var(--line)"/>
+              <rect x="115" y="60" width="70" height="100" rx="8" fill="var(--blue-tint)" stroke="var(--blue-deep)"/>
+              <rect x="210" y="80" width="70" height="60" rx="8" fill="var(--green)" stroke="var(--green-deep)"/>
+              <text x="55" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="18" fill="var(--ink)">18</text>
+              <text x="150" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="18" fill="var(--ink)">60+</text>
+              <text x="245" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="18" fill="#fff">4</text>
+            </svg>
+            <div class="fig-caption">Figure 2. Thematic analysis, from transcripts to themes. Illustrative, synthetic counts.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Insight</h4>
+        <p>Four themes explained the risk, and they converged on one story: access is granted broadly, shared freely, not tracked, and rarely revoked. Businesses default to full access because partial roles do not match how they work, agencies and ex-staff keep access long after they should, admin lists grow past the point anyone reviews them, and clean-up only happens after something breaks. The risk is structural and behavioural, not just technical.</p>
+        <div class="fig">
+          <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="280" cy="110" r="42" fill="var(--ink)"/>
+            <text x="280" y="106" text-anchor="middle" fill="var(--bg)" font-family="Fraunces, serif" font-size="12" font-weight="600">One</text>
+            <text x="280" y="122" text-anchor="middle" fill="var(--bg)" font-family="Fraunces, serif" font-size="12" font-weight="600">story</text>
+            <g stroke="var(--line)" stroke-width="1.4" stroke-dasharray="3 5">
+              <line x1="280" y1="68" x2="130" y2="35"/>
+              <line x1="322" y1="110" x2="470" y2="60"/>
+              <line x1="322" y1="140" x2="470" y2="175"/>
+              <line x1="280" y1="152" x2="130" y2="185"/>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink)" text-anchor="middle">
+              <rect x="30" y="10" width="205" height="45" rx="10" fill="var(--blue-tint)"/>
+              <text x="132" y="37" font-size="10.5">Granted broadly by default</text>
+              <rect x="375" y="30" width="175" height="45" rx="10" fill="var(--green-tint)"/>
+              <text x="462" y="57" font-size="10.5">Shared freely, rarely reviewed</text>
+              <rect x="375" y="150" width="175" height="45" rx="10" fill="#F1E2E0"/>
+              <text x="462" y="177" font-size="10.5">Cleaned up only after harm</text>
+              <rect x="30" y="163" width="205" height="45" rx="10" fill="#EFE6DA"/>
+              <text x="132" y="190" font-size="10.5">Rarely revoked over time</text>
+            </g>
+          </svg>
+          <div class="fig-caption">Figure 3. Thematic map, four themes, one story. Illustrative.</div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <h4>Impact, what moved</h4>
+        <ul>
+          <li>Produced a research-backed set of recommendations, tenure-gated sensitive actions, scoped and expiring access for agencies, change notifications, and clearer admin management, that informed the team owning the surface.</li>
+          <li>Several directions are being built into a new single-owner account model from the start, rather than retrofitted onto the surface being replaced, the highest-leverage outcome for durable risk reduction.</li>
+          <li>Reframed business-account compromise as an access-governance problem, not only an attacker-sophistication problem, shifting where the team invests.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="confidentiality">
+      <span aria-hidden="true">🔒</span>
+      <span>This work is in a sensitive domain. Everything shown is abstracted, uses illustrative, not actual, data, and omits confidential detail. Happy to discuss the craft in more depth under appropriate confidentiality.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="tab-panel">
+  <div class="wrap" style="padding-top:96px;">
+    <div class="eyebrow">Contact</div>
+    <h2 style="font-size:32px;">Let us talk research.</h2>
+    <p style="max-width:56ch; font-size:16px; margin-bottom:28px;">Open to Senior and Staff UX Research roles, trust, safety, security and beyond.</p>
+    <div style="display:flex; gap:22px; flex-wrap:wrap; align-items:center;">
+      <a class="btn btn-primary" href="mailto:boseneha93@gmail.com">boseneha93@gmail.com</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/neha-bose" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="mono" style="color:var(--ink-faint); font-size:14px;">London, UK</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-bottom" style="margin-top:0; padding-top:0; border-top:none;">Neha Bose. Senior UX Researcher, Trust, Safety and Security.</div>
+</footer>
+
+<script>
+  function showTab(name){
+    document.querySelectorAll('.tab-panel').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById(name).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.toggle('active', el.dataset.tab === name); });
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  function openCS(n){
+    document.querySelectorAll('.cs-detail').forEach(function(el){ el.classList.remove('visible'); });
+    document.querySelectorAll('.cs-card').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById('cs-detail-' + n).classList.add('visible');
+    document.querySelector('.cs-card[data-cs="' + n + '"]').classList.add('active');
+    document.getElementById('cs-detail-' + n).scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function closeCS(){
+    document.querySelectorAll('.cs-detail').forEach(function(el){ el.classList.remove('visible'); });
+    document.querySelectorAll('.cs-card').forEach(function(el){ el.classList.remove('active'); });
+  }
+</script>
+
+</body>
+</html>
